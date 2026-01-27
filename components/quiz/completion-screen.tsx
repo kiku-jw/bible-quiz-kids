@@ -80,23 +80,35 @@ export function CompletionScreen({ language }: CompletionScreenProps) {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="min-h-screen w-full bg-[#fdf8f1] text-[#311c0f] flex flex-col items-center py-6 md:py-10 px-4 overflow-y-auto"
+            className="min-h-screen w-full bg-[#fdf8f1] relative text-[#311c0f] flex flex-col items-center py-6 md:py-10 px-4 overflow-y-auto"
         >
-            <div className="max-w-4xl w-full flex flex-col gap-8 md:gap-12">
+            {/* Rich Background Elements - CSS Only */}
+            <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+                {/* Subtle paper-like texture using SVG filter or noise if possible, but let's stick to gradients for reliability */}
+                <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-[0.15]" />
+                <div className="absolute inset-0 bg-gradient-radial from-transparent via-primary/5 to-accent/10 opacity-60" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(253,248,241,1)_0%,rgba(253,248,241,0)_100%)]" />
+
+                {/* Decorative blobs */}
+                <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-[100px]" />
+                <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-accent/10 rounded-full blur-[100px]" />
+            </div>
+
+            <div className="max-w-4xl w-full flex flex-col gap-8 md:gap-12 z-10">
 
                 {/* Reward Header */}
                 <div className="text-center space-y-3 md:space-y-5">
                     <motion.div
-                        initial={{ scale: 0.9 }}
-                        animate={{ scale: 1 }}
-                        className="inline-block p-4 rounded-3xl bg-yellow-400/20 border-2 border-yellow-500/30 text-yellow-800 font-bold mb-2 shadow-sm"
+                        initial={{ y: -20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        className="inline-block p-4 rounded-3xl bg-yellow-400/20 border-2 border-yellow-500/30 text-yellow-800 font-bold mb-2 shadow-sm backdrop-blur-sm"
                     >
                         {labels.badge}
                     </motion.div>
-                    <h1 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+                    <h1 className="text-4xl md:text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-[#9b5126] via-[#311c0f] to-[#9b5126] drop-shadow-sm">
                         {labels.title}
                     </h1>
-                    <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-tight">
+                    <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-tight italic">
                         {labels.desc}
                     </p>
                 </div>
@@ -104,17 +116,22 @@ export function CompletionScreen({ language }: CompletionScreenProps) {
                 {/* Journey Memories */}
                 {quizData.some(q => q.image) && (
                     <div className="space-y-4 md:space-y-6">
-                        <h2 className="text-xl md:text-2xl font-bold text-center">
-                            {{ uk: 'Спогади з подорожі', ru: 'Воспоминания из путешествия', en: 'Journey Memories' }[language]}
+                        <h2 className="text-2xl md:text-3xl font-bold text-center text-primary/80">
+                            {{ uk: 'Твоя Колекція', ru: 'Твоя Коллекция', en: 'Your Collection' }[language]}
                         </h2>
-                        <div className="flex flex-wrap justify-center gap-3 md:gap-4 overflow-x-auto pb-4 no-scrollbar">
+                        <div className="flex flex-wrap justify-center gap-3 md:gap-6 pb-6">
                             {quizData.filter(q => q.image).map((img, idx) => (
-                                <motion.div
+                                <motion.button
                                     key={img.id}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: idx * 0.1 }}
-                                    className="relative w-32 h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden shadow-md border-4 border-white shrink-0"
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: idx * 0.05 }}
+                                    onClick={() => setSelectedImage({
+                                        src: img.image!,
+                                        alt: { uk: 'Спогад', ru: 'Воспоминание', en: 'Memory' },
+                                        title: { uk: 'Особливий момент', ru: 'Особый момент', en: 'Special Moment' }
+                                    })}
+                                    className="group relative w-32 h-32 md:w-48 md:h-48 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg border-4 border-white transition-all hover:scale-105 active:scale-95 hover:shadow-xl hover:z-20"
                                 >
                                     <Image
                                         src={img.image!}
@@ -122,7 +139,10 @@ export function CompletionScreen({ language }: CompletionScreenProps) {
                                         fill
                                         className="object-cover"
                                     />
-                                </motion.div>
+                                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /><line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" /></svg>
+                                    </div>
+                                </motion.button>
                             ))}
                         </div>
                     </div>
