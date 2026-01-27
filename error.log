@@ -1,0 +1,45 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import os; from google import genai; from google.genai import types; client = genai.Client(api_key=os.environ['GEMINI_API_KEY'], http_options={'api_version': 'v1beta'}); response = client.models.generate_images(model='imagen-4.0-generate-001', prompt='A simple red apple, watercolor', config=types.GenerateImagesConfig(number_of_images=1));
+                                                                                                                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nick/Library/Python/3.14/lib/python/site-packages/google/genai/models.py", line 5488, in generate_images
+    api_response = self._generate_images(
+        model=model,
+        prompt=prompt,
+        config=config,
+    )
+  File "/Users/nick/Library/Python/3.14/lib/python/site-packages/google/genai/models.py", line 4254, in _generate_images
+    response = self._api_client.request(
+        'post', path, request_dict, http_options
+    )
+  File "/Users/nick/Library/Python/3.14/lib/python/site-packages/google/genai/_api_client.py", line 1388, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/Users/nick/Library/Python/3.14/lib/python/site-packages/google/genai/_api_client.py", line 1224, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nick/Library/Python/3.14/lib/python/site-packages/tenacity/__init__.py", line 477, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/Users/nick/Library/Python/3.14/lib/python/site-packages/tenacity/__init__.py", line 378, in iter
+    result = action(retry_state)
+  File "/Users/nick/Library/Python/3.14/lib/python/site-packages/tenacity/__init__.py", line 420, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "/Users/nick/Library/Python/3.14/lib/python/site-packages/tenacity/__init__.py", line 187, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 443, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/Users/nick/Library/Python/3.14/lib/python/site-packages/tenacity/__init__.py", line 480, in __call__
+    result = fn(*args, **kwargs)
+  File "/Users/nick/Library/Python/3.14/lib/python/site-packages/google/genai/_api_client.py", line 1201, in _request_once
+    errors.APIError.raise_for_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/nick/Library/Python/3.14/lib/python/site-packages/google/genai/errors.py", line 106, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nick/Library/Python/3.14/lib/python/site-packages/google/genai/errors.py", line 131, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/predict_requests_per_model_per_day_paid_tier_1, limit: 70, model: imagen-4.0-generate', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/predict_requests_per_model_per_day_paid_tier_1', 'quotaId': 'PredictRequestsPerDayPerProjectPerModelPaidTier1', 'quotaDimensions': {'location': 'global', 'model': 'imagen-4.0-generate'}, 'quotaValue': '70'}]}]}}

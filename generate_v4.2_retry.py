@@ -4,7 +4,7 @@ import os
 import time
 
 # YOUR API KEY
-API_KEY = "AIzaSyCnzwpswW9Ib1C0X8naVh2jU4OU3Bxll7s"
+API_KEY = "AIzaSyA4Y3VLQEmubmCrBntSUANiWm60bYFh2h4"
 client = genai.Client(api_key=API_KEY, http_options={'api_version': 'v1beta'})
 
 MODEL_NAME = "imagen-4.0-generate-001" 
