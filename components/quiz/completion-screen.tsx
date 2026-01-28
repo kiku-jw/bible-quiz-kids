@@ -6,38 +6,11 @@ import Image from 'next/image';
 import type { Language } from './bible-quiz';
 import { quizData } from '@/lib/quiz-data';
 
-const GALLERY_IMAGES = [
-    {
-        src: '/bible-quiz-kids/illustrations/intro.png',
-        alt: { uk: 'Початок подорожі', ru: 'Начало путешествия', en: 'The Beginning' },
-        title: { uk: 'Початок подорожі', ru: 'Начало путешествия', en: 'The Beginning' }
-    },
-    {
-        src: '/bible-quiz-kids/illustrations/q1.png',
-        alt: { uk: 'Помазання на царство', ru: 'Помазание на царство', en: 'Anointing as King' },
-        title: { uk: 'Помазання на царство', ru: 'Помазание на царство', en: 'Anointing as King' }
-    },
-    {
-        src: '/bible-quiz-kids/illustrations/q7.png',
-        alt: { uk: 'Знайдена Книга Закону', ru: 'Найденная Книга Закона', en: 'Found Book of Law' },
-        title: { uk: 'Знайдена Книга Закону', ru: 'Найденная Книга Закона', en: 'Found Book of Law' }
-    },
-    {
-        src: '/bible-quiz-kids/illustrations/q15.png',
-        alt: { uk: 'Пророк Єремія', ru: 'Пророк Иеремия', en: 'Prophet Jeremiah' },
-        title: { uk: 'Пророк Єремія', ru: 'Пророк Иеремия', en: 'Prophet Jeremiah' }
-    },
-    {
-        src: '/bible-quiz-kids/illustrations/q22.png',
-        alt: { uk: 'Вогонь у серці', ru: 'Огонь в сердце', en: 'Fire in the Heart' },
-        title: { uk: 'Вогонь у серці', ru: 'Огонь в сердце', en: 'Fire in the Heart' }
-    },
-    {
-        src: '/bible-quiz-kids/illustrations/finale.png',
-        alt: { uk: 'Радісне майбутнє', ru: 'Радостное будущее', en: 'Joyful Future' },
-        title: { uk: 'Радісне майбутнє', ru: 'Радостное будущее', en: 'Joyful Future' }
-    },
-];
+interface ImageItem {
+    src: string;
+    alt: { uk: string; ru: string; en: string };
+    title: { uk: string; ru: string; en: string };
+}
 
 const EXTERNAL_LINKS = {
     uk: [
@@ -59,9 +32,9 @@ interface CompletionScreenProps {
 }
 
 export function CompletionScreen({ language }: CompletionScreenProps) {
-    const [selectedImage, setSelectedImage] = useState<typeof GALLERY_IMAGES[0] | null>(null);
+    const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null);
 
-    const handleDownload = (img: typeof GALLERY_IMAGES[0]) => {
+    const handleDownload = (img: ImageItem) => {
         const link = document.createElement('a');
         link.href = img.src;
         link.download = `${img.src.split('/').pop()}`;
@@ -77,12 +50,13 @@ export function CompletionScreen({ language }: CompletionScreenProps) {
     } as Record<Language, any>)[language] || { badge: '', title: '', desc: '', learn: '', close: '', download: '', subline: '' };
 
     // Deduplicate images from quizData
-    const uniqueImages = Array.from(new Set(quizData.filter(q => q.image).map(q => q.image)))
+    const uniqueImages: ImageItem[] = Array.from(new Set(quizData.filter(q => q.image).map(q => q.image)))
         .map(src => {
             const quizItem = quizData.find(q => q.image === src);
+            const title = quizItem?.question || quizItem?.text || { uk: 'Особливий момент', ru: 'Особый момент', en: 'Special Moment' };
             return {
                 src: src!,
-                title: quizItem?.question || { uk: 'Особливий момент', ru: 'Особый момент', en: 'Special Moment' },
+                title: title,
                 alt: { uk: 'Спогад', ru: 'Воспоминание', en: 'Memory' }
             };
         });
