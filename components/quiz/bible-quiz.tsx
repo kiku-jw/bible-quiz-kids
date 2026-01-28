@@ -66,12 +66,12 @@ function QuizContent() {
                                     {language === 'uk' ? 'Питання' : language === 'ru' ? 'Вопрос' : 'Question'} {answeredCount + 1} {language === 'uk' ? 'з' : language === 'ru' ? 'из' : 'of'} {totalQuestions}
                                 </span>
                             </div>
-                            <div className="h-1.5 bg-muted/20 backdrop-blur-sm rounded-full overflow-hidden border border-white/5 shadow-inner">
+                            <div className="h-1 bg-muted/10 backdrop-blur-sm rounded-full overflow-hidden border border-white/5 shadow-inner">
                                 <motion.div
-                                    className="h-full bg-primary/80 shadow-[0_0_10px_rgba(var(--primary),0.5)]"
+                                    className="h-full bg-gradient-to-r from-primary/60 via-primary to-primary/60 shadow-[0_0_15px_rgba(var(--primary),0.6)]"
                                     initial={{ width: 0 }}
                                     animate={{ width: `${(answeredCount / totalQuestions) * 100}%` }}
-                                    transition={{ type: 'spring', stiffness: 50, damping: 15 }}
+                                    transition={{ type: 'spring', stiffness: 40, damping: 20 }}
                                 />
                             </div>
                         </div>
@@ -135,7 +135,7 @@ function QuizContent() {
                 rel="noopener noreferrer"
                 className="fixed bottom-2 right-2 text-[8px] md:text-[10px] text-muted-foreground/20 hover:text-muted-foreground/40 transition-colors z-50 cursor-pointer"
             >
-                v4.3.17 [Interactive]
+                v4.3.18 [Interactive]
             </a>
         </div>
     );
