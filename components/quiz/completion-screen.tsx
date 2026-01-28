@@ -247,4 +247,3 @@ export function CompletionScreen({ language }: CompletionScreenProps) {
         </motion.div>
     );
 }
-}
