@@ -135,7 +135,7 @@ function QuizContent() {
                 rel="noopener noreferrer"
                 className="fixed bottom-2 right-2 text-[8px] md:text-[10px] text-muted-foreground/20 hover:text-muted-foreground/40 transition-colors z-50 cursor-pointer"
             >
-                v4.3.28 [Interactive]
+                v4.3.29 [Interactive]
             </a>
         </div>
     );
