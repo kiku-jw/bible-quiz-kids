@@ -75,7 +75,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 <div align="center">
   <p>Built with ❤️ by <b>KikuAI</b></p>
-  <a href="https://kikuai.dev">
-    <img src="https://kikuai.dev/logo.png" width="100" alt="KikuAI Logo" onerror="this.src='https://via.placeholder.com/100?text=KikuAI'"/>
-  </a>
+  <p><a href="https://kikuai.dev">kikuai.dev</a></p>
 </div>
