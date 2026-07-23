@@ -4,17 +4,19 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![Framework](https://img.shields.io/badge/Framework-Next.js%2016-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
 
-An immersive, interactive biblical journey designed for children, featuring premium AI-generated illustrations, multi-language support, and a "juicy" user experience.
+An interactive Bible quiz for children about King Josiah and the prophet Jeremiah, with localized questions, watercolor-style illustrations, story transitions, a reward gallery, and audio.
+
+**[Play the live quiz](https://kiku-jw.github.io/bible-quiz-kids/)**
 
 ---
 
 ## ✨ Features
 
-- **🎨 Premium AI Illustrations**: 28 bespoke "Nano Banana" watercolor-style illustrations that bring the stories of King Josiah and Prophet Jeremiah to life.
+- **🎨 Watercolor-style Illustrations**: PNG artwork accompanies the intro, questions, story transitions, and finale.
 - **🌍 Multi-language Support**: Fully localized in **Ukrainian**, **Russian**, and **English**.
 - **📜 Interactive Storytelling**: A blend of educational quiz mechanics and story-driven transitions.
 - **🏆 Reward Gallery**: An interactive collection screen where kids can review and download the illustrations they've "unlocked" during the game.
-- **🔊 Atmospheric Sound**: Integrated background music and synthesis-driven feedback for a complete sensory experience.
+- **🔊 Audio Feedback**: Background music and browser speech synthesis accompany the quiz.
 
 ## 📸 Sneak Peek
 
@@ -33,15 +35,15 @@ An immersive, interactive biblical journey designed for children, featuring prem
 
 - **Core**: [Next.js 16](https://nextjs.org) (App Router), [React 19](https://react.dev)
 - **Styling**: [Tailwind CSS 4](https://tailwindcss.com), [Framer Motion](https://www.framer.com/motion/) for animations.
-- **Assets**: Custom AI-generated illustrations using **Nano Banana Pro**.
+- **Assets**: PNG illustrations stored with the static site.
 - **Deployment**: [GitHub Pages](https://pages.github.com).
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 18.x or later
-- npm or pnpm
+- Node.js 20.9 or later
+- npm
 
 ### Installation
 
@@ -69,7 +71,13 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - `lib/quiz-data.ts`: Central hub for quiz content, localizations, and image mappings.
 - `components/quiz/`: Heart of the application, containing `StoryScreen`, `QuestionCard`, and `CompletionScreen`.
-- `public/illustrations/`: Optimized WEBP/PNG assets for high-fidelity visuals.
+- `public/illustrations/`: PNG assets used by the intro, questions, transitions, and completion screen.
+
+## Runtime behavior
+
+- The quiz runs entirely in the browser as a static export; it has no backend or account system.
+- Progress is held in client memory, so reloading the page resets the current run.
+- Question data, answer keys, feedback, and media assets are shipped to the browser and can be inspected; the quiz is not a secure testing environment.
 
 ---
 

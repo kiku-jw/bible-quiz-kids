@@ -25,6 +25,7 @@ export function StoryScreen({ screen, onContinue, language, onLanguageChange }: 
 
     const illustration = screen.image;
     const isIntro = screen.type === 'intro';
+    const TitleTag = isIntro ? 'h1' : 'h2';
 
     const getTitle = () => {
         if (screen.type === 'intro') {
@@ -100,9 +101,9 @@ export function StoryScreen({ screen, onContinue, language, onLanguageChange }: 
                         </div>
                     )}
 
-                    <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3 md:mb-5 leading-tight">
+                    <TitleTag className="text-xl md:text-2xl font-bold text-foreground mb-3 md:mb-5 leading-tight">
                         {getTitle()}
-                    </h2>
+                    </TitleTag>
 
                     <p className="text-base md:text-lg text-foreground/90 leading-relaxed mb-4 md:mb-6 text-balance italic">
                         {screen.text?.[language]}
