@@ -10,6 +10,9 @@ const nunito = Nunito({
 export const metadata: Metadata = {
     title: "Біблійна Вікторина: Подорож у часи царя Йосії та пророка Єремії",
     description: "Захоплююча подорож для дітей! Дізнайся більше про вірних слуг Єгови через цікаві питання та яскраві акварельні ілюстрації.",
+    alternates: {
+        canonical: "https://kiku-jw.github.io/bible-quiz-kids/",
+    },
     openGraph: {
         title: "Біблійна Вікторина для дітей 📖✨",
         description: "Вирушай у подорож біблійними часами разом із Йосією та Єремією!",
