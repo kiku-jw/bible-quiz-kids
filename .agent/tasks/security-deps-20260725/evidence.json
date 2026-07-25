@@ -1,0 +1,26 @@
+{
+  "task_id": "security-deps-20260725",
+  "repository": "kiku-jw/bible-quiz-kids",
+  "issue": "https://github.com/kiku-jw/bible-quiz-kids/issues/3",
+  "status": "local_verification_passed",
+  "dependencies": {
+    "next": "16.2.11",
+    "postcss": "8.5.18",
+    "sharp": "0.35.3"
+  },
+  "verification": {
+    "npm_ci": "passed",
+    "npm_audit": {
+      "status": "passed",
+      "total_vulnerabilities": 0,
+      "high": 0,
+      "critical": 0
+    },
+    "typescript": "passed",
+    "static_build": "passed",
+    "static_export_invariants": "passed",
+    "security_settings_readback": "passed",
+    "pages_exact_sha": "pending",
+    "public_url": "pending"
+  }
+}

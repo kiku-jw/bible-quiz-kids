@@ -1,0 +1,11 @@
+{
+  "default_branch": "main",
+  "dependabot_alerts_accessible": true,
+  "dependabot_security_updates": "enabled",
+  "automated_security_fixes": {
+    "enabled": true,
+    "paused": false
+  },
+  "secret_scanning": "enabled",
+  "secret_scanning_push_protection": "enabled"
+}
