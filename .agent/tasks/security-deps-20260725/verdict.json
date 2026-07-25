@@ -1,0 +1,20 @@
+{
+  "task_id": "security-deps-20260725",
+  "repository": "kiku-jw/bible-quiz-kids",
+  "verdict": "PASS",
+  "verified_at": "2026-07-25",
+  "verification_mode": "fresh local verification plus exact-SHA remote deployment and live-page readback",
+  "verified_merge_sha": "fee5a9a29d876368e81741fde152896099a82431",
+  "acceptance_criteria": {
+    "dependabot_alerts_enabled": "passed",
+    "automated_security_fixes_enabled": "passed",
+    "minimal_dependency_remediation": "passed",
+    "zero_high_or_critical_npm_advisories": "passed",
+    "clean_install_typescript_and_build": "passed",
+    "static_export_invariants": "passed",
+    "exact_sha_pages_deployment": "passed",
+    "public_page_http_200": "passed",
+    "no_application_or_workflow_changes": "passed"
+  },
+  "blocking_findings": []
+}

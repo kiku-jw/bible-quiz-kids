@@ -1,0 +1,13 @@
+{
+  "merge_sha": "fee5a9a29d876368e81741fde152896099a82431",
+  "pages_run": "https://github.com/kiku-jw/bible-quiz-kids/actions/runs/30174053387",
+  "workflow": "Deploy to GitHub Pages",
+  "workflow_conclusion": "success",
+  "build_job": "success",
+  "deploy_job": "success",
+  "public_url": "https://kiku-jw.github.io/bible-quiz-kids/",
+  "http_status": 200,
+  "canonical_url_present": true,
+  "localized_heading_present": true,
+  "non_blocking_warning": "Existing GitHub Actions use the deprecated Node.js 20 action runtime."
+}
