@@ -1,0 +1,16 @@
+npm ci
+PASS: added 59 packages, audited 60 packages, found 0 vulnerabilities
+
+npm audit --json
+PASS: 0 info, 0 low, 0 moderate, 0 high, 0 critical
+
+npx tsc --noEmit
+PASS
+
+npm run build
+PASS: Next.js 16.2.11 static export generated routes /, /_not-found, /icon.svg
+
+out/index.html invariants
+PASS: canonical https://kiku-jw.github.io/bible-quiz-kids/
+PASS: assets and icon use /bible-quiz-kids/
+PASS: localized H1 is "Початок подорожі"
